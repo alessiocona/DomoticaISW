@@ -17,4 +17,19 @@ public class UnitaImmobiliare {
         this.stanze = stanze;
     }
 
+    public void aggiungiStanza(Stanza stanza){
+        this.stanze.add(stanza);
+    }
+
+    public void rimuoviStanza(Stanza stanza){
+        this.stanze.remove(stanza);
+    }
+
+    public void aggiungiArtefatto(Artefatto artefatto){
+        this.esterno.add(artefatto);
+    }
+
+    public void rimuoviArtefatto(Artefatto artefatto){
+        this.esterno.remove(artefatto);
+    }
 }
