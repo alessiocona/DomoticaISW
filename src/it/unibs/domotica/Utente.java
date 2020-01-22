@@ -18,6 +18,7 @@ public class Utente {
         this.ruolo = ruolo;
     }
 
+
     public String getPassword() {
         return password;
     }

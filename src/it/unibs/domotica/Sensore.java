@@ -5,6 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Sensore {
     Categoria categoria;
+    private String nome;
     ArrayList<Stanza> stanze;
     ArrayList<Artefatto> artefatti;
     private float valore;
@@ -13,10 +14,11 @@ public class Sensore {
     private int min;
     private String unitaDiMisura;
 
-    public Sensore(Categoria categoria, boolean valoreNumerico,String unitaDiMisura, int max, int min)
+    public Sensore(Categoria categoria, boolean valoreNumerico,String unitaDiMisura, int max, int min, String nome)
     {
         this.categoria = categoria;
         this.unitaDiMisura = unitaDiMisura;
+        this.nome = nome;
         this.stanze = new ArrayList<Stanza>();
         this.artefatti = new ArrayList<Artefatto>();
         this.valoreNumerico = valoreNumerico;
@@ -25,16 +27,21 @@ public class Sensore {
         this.valore = 0;
     }
 
-    public Sensore(Categoria categoria, boolean valoreNumerico,String unitaDiMisura, int max) //Costruttore senza specificare il limite minimo del sensore(utilizzabile per esempio con sensori a stati, assumiamo che lo stato minimo per ques't ultimi sia lo 0)
+    public Sensore(Categoria categoria, boolean valoreNumerico,String unitaDiMisura, int max, String nome) //Costruttore senza specificare il limite minimo del sensore(utilizzabile per esempio con sensori a stati, assumiamo che lo stato minimo per ques't ultimi sia lo 0)
     {
         this.categoria = categoria;
         this.unitaDiMisura = unitaDiMisura;
+        this.nome = nome;
         this.stanze = new ArrayList<Stanza>();
         this.artefatti = new ArrayList<Artefatto>();
         this.valoreNumerico = valoreNumerico;
         this.max = max;
         this.min = 0;
         this.valore = 0;
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public Categoria getCategoria() {

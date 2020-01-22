@@ -19,6 +19,39 @@ public class Stanza {
         this.artefatti.add(artefatto);
     }
 
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public ArrayList<Artefatto> getArtefatti() {
+        return artefatti;
+    }
+
+    public void setArtefatti(ArrayList<Artefatto> artefatti) {
+        this.artefatti = artefatti;
+    }
+
+    public ArrayList<Sensore> getSensori() {
+        return sensori;
+    }
+
+    public void setSensori(ArrayList<Sensore> sensori) {
+        this.sensori = sensori;
+    }
+
+    public ArrayList<Attuatore> getAttuatori() {
+        return attuatori;
+    }
+
+    public void setAttuatori(ArrayList<Attuatore> attuatori) {
+        this.attuatori = attuatori;
+    }
+
     public void rimuoviArtefatto(Artefatto artefatto){
         this.artefatti.remove(artefatto);
     }
@@ -41,11 +74,6 @@ public class Stanza {
 
     @Override
     public String toString() {
-        return "Stanza{" +
-                "nome='" + nome + '\'' +
-                ", artefatti=" + artefatti +
-                ", sensori=" + sensori +
-                ", attuatori=" + attuatori +
-                '}';
+        return nome;
     }
 }

@@ -21,26 +21,23 @@ public class UnitaImmobiliare {
         this.stanze.add(stanza);
     }
 
-    public void rimuoviStanza(Stanza stanza){
-        this.stanze.remove(stanza);
+    public String getNome() {
+        return nome;
     }
 
-    public void aggiungiArtefatto(Artefatto artefatto){
-        this.esterno.add(artefatto);
+    public String getTipologia() {
+        return tipologia;
     }
 
-    public void rimuoviArtefatto(Artefatto artefatto){
-        this.esterno.remove(artefatto);
+    public String getDescrizione() {
+        return descrizione;
     }
 
-    @Override
-    public String toString() {
-        return "UnitaImmobiliare{" +
-                "nome='" + nome + '\'' +
-                ", tipologia='" + tipologia + '\'' +
-                ", descrizione='" + descrizione + '\'' +
-                ", esterno=" + esterno +
-                ", stanze=" + stanze +
-                '}';
+    public ArrayList<Artefatto> getEsterno() {
+        return esterno;
+    }
+
+    public ArrayList<Stanza> getStanze() {
+        return stanze;
     }
 }

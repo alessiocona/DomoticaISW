@@ -13,6 +13,9 @@ public class Artefatto {
         this.attuatori = new ArrayList<Attuatore>();
     }
 
+    public ArrayList<Sensore> getSensori() {
+        return sensori;
+    }
 
     public void aggiungiAttuatore(Attuatore attuatore) {
         this.attuatori.add(attuatore);
