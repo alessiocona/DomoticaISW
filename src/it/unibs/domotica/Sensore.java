@@ -12,4 +12,24 @@ public class Sensore {
         this.stanze = stanze;
         this.artefatti = artefatti;
     }
+
+    public void aggiungiStanza(Stanza stanza) {
+        this.stanze.add(stanza);
+        stanza.aggiungiSensore(this);
+    }
+
+    public void rimuoviStanza(Stanza stanza) {
+        this.stanze.remove(stanza);
+        stanza.rimuoviSensore(this);
+    }
+
+    public void aggiungiArtefatto(Artefatto artefatto){
+        this.artefatti.add(artefatto);
+        artefatto.aggiungiSensore(this);
+    }
+
+    public void rimuoviArtefatto(Artefatto artefatto){
+        this.artefatti.remove(artefatto);
+        artefatto.rimuoviSensore(this);
+    }
 }
