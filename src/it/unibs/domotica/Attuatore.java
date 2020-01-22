@@ -18,4 +18,24 @@ public class Attuatore {
     }
 
 
+    public void aggiungiStanza(Stanza stanza) {
+        this.stanze.add(stanza);
+        stanza.aggiungiAttuatore(this);
+    }
+
+    public void rimuoviStanza(Stanza stanza) {
+        this.stanze.remove(stanza);
+        stanza.rimuoviAttuatore(this);
+    }
+
+    public void aggiungiArtefatto(Artefatto artefatto){
+        this.artefatti.add(artefatto);
+        artefatto.aggiungiAttuatore(this);
+    }
+
+    public void rimuoviArtefatto(Artefatto artefatto){
+        this.artefatti.add(artefatto);
+        artefatto.rimuoviAttuatore(this);
+    }
+
 }
