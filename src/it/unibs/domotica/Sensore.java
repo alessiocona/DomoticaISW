@@ -6,6 +6,8 @@ public class Sensore {
     CategoriaSensore categoriaSensore;
     ArrayList<Stanza> stanze;
     ArrayList<Artefatto> artefatti;
+    private float valore;
+    private String unitaDiMisura;
 
     public Sensore(CategoriaSensore categoriaSensore, ArrayList<Stanza> stanze, ArrayList<Artefatto> artefatti) {
         this.categoriaSensore = categoriaSensore;
