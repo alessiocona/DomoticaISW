@@ -14,7 +14,7 @@ public class Stanza {
         this.sensori = sensori;
         this.attuatori = attuatori;
     }
-
+//prova
     public void aggiungiArtefatto(Artefatto artefatto){
         this.artefatti.add(artefatto);
     }
