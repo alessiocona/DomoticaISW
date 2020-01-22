@@ -1,0 +1,18 @@
+CASI D'USO V1.0
+
+Manutentore:
+
+-Inserire e salvare in modo persistente su disco le descrizione delle categorie di sensori/attuatori utilizzabili dal sistema domotico.
+-Inserire descrizione unita' immobiliare(inserimento stanze/artefatti con nome univoco) con i relativi sensori/attuatori,
+  i quali devono essere obbligatoriamente instanze di sensori/attuatori gia presenti in una categoria.
+-Il nome dell'istanza sensore/attuatore e' composta da 2 sezioni come riportato: t1_Termometro. Primo nome di fantasia,
+    il secondo classe di appartenenza
+-Visualizazione della descrizione dell'unita' immobiliare e delle categorie.
+-Non può esistere più di un sensore per categoria associato a ciascuna stanza o artefatto
+-Non può esistere più di un attuatore per categoria associato a ciascuna stanza o artefatto
+-Sensori/attuatori sono sempre attivi
+
+
+Fruitore:
+
+-Visualizazione della descrizione dell'unita' immobiliare e le misurazioni dei sensori al momento della richiesta.
