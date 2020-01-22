@@ -16,4 +16,5 @@ public class UnitaImmobiliare {
         this.esterno = esterno;
         this.stanze = stanze;
     }
+
 }
