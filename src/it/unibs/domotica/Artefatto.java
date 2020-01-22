@@ -7,10 +7,10 @@ public class Artefatto {
     private ArrayList<Sensore> sensori;
     private ArrayList<Attuatore> attuatori;
 
-    public Artefatto(String nome, ArrayList<Sensore> sensori, ArrayList<Attuatore> attuatori) {
+    public Artefatto(String nome) {
         this.nome = nome;
-        this.sensori = sensori;
-        this.attuatori = attuatori;
+        this.sensori = new ArrayList<Sensore>();
+        this.attuatori = new ArrayList<Attuatore>();
     }
 
 
@@ -28,5 +28,14 @@ public class Artefatto {
 
     public void rimuoviSensore(Sensore sensore) {
         this.sensori.remove(sensore);
+    }
+
+    @Override
+    public String toString() {
+        return "Artefatto{" +
+                "nome='" + nome + '\'' +
+                ", sensori=" + sensori +
+                ", attuatori=" + attuatori +
+                '}';
     }
 }

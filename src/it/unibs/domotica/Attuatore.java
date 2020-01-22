@@ -1,20 +1,22 @@
 package it.unibs.domotica;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Attuatore {
-    private CategoriaAttuatore categoriaAttuatore;
-    private String modoDefault;
-    private Map<Integer, String> modalitaFunzionamento;
+    private Categoria categoria;
+    private Integer modoDefault;
+    private HashMap<Integer, String> modalitaFunzionamento;
     private ArrayList<Stanza> stanze;
     private ArrayList<Artefatto> artefatti;
 
-    public Attuatore(CategoriaAttuatore categoriaAttuatore, String modoDefault, ArrayList<Stanza> stanze, ArrayList<Artefatto> artefatti) {
-        this.categoriaAttuatore = categoriaAttuatore;
+    public Attuatore(Categoria categoria, Integer modoDefault, HashMap<Integer, String> modalitaFunzionamento) {
+        this.categoria = categoria;
         this.modoDefault = modoDefault;
-        this.stanze = stanze;
-        this.artefatti = artefatti;
+        this.modalitaFunzionamento = modalitaFunzionamento;
+        this.stanze = new ArrayList<Stanza>();
+        this.artefatti = new ArrayList<Artefatto>();
     }
 
 
@@ -38,4 +40,13 @@ public class Attuatore {
         artefatto.rimuoviAttuatore(this);
     }
 
+    @Override
+    public String toString() {
+        return "Attuatore{" +
+                "categoria=" + categoria +
+                ", modoDefault=" + modoDefault +
+                ", modalitaFunzionamento=" + modalitaFunzionamento +
+
+                '}';
+    }
 }

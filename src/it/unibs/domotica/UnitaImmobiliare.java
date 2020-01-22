@@ -9,12 +9,12 @@ public class UnitaImmobiliare {
     private ArrayList<Artefatto> esterno;
     private ArrayList<Stanza> stanze;
 
-    public UnitaImmobiliare(String nome, String tipologia, String descrizione, ArrayList<Artefatto> esterno, ArrayList<Stanza> stanze) {
+    public UnitaImmobiliare(String nome, String tipologia, String descrizione) {
         this.nome = nome;
         this.tipologia = tipologia;
         this.descrizione = descrizione;
-        this.esterno = esterno;
-        this.stanze = stanze;
+        this.esterno = new ArrayList<Artefatto>();
+        this.stanze = new ArrayList<Stanza>();
     }
 
     public void aggiungiStanza(Stanza stanza){
@@ -31,5 +31,16 @@ public class UnitaImmobiliare {
 
     public void rimuoviArtefatto(Artefatto artefatto){
         this.esterno.remove(artefatto);
+    }
+
+    @Override
+    public String toString() {
+        return "UnitaImmobiliare{" +
+                "nome='" + nome + '\'' +
+                ", tipologia='" + tipologia + '\'' +
+                ", descrizione='" + descrizione + '\'' +
+                ", esterno=" + esterno +
+                ", stanze=" + stanze +
+                '}';
     }
 }

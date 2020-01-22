@@ -8,4 +8,12 @@ public class Categoria {
         this.nome = nome;
         this.descrizione = descrizione;
     }
+
+    @Override
+    public String toString() {
+        return "Categoria{" +
+                "nome='" + nome + '\'' +
+                ", descrizione='" + descrizione + '\'' +
+                '}';
+    }
 }

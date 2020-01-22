@@ -4,43 +4,45 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Sensore {
-    CategoriaSensore categoriaSensore;
+    Categoria categoria;
     ArrayList<Stanza> stanze;
     ArrayList<Artefatto> artefatti;
     private float valore;
-    private boolean tipo; //Se il tipo e' 0 esso corrisponde ad uno stato, se 1 ad una misurazione numerica
+    private boolean valoreNumerico; //Se il tipo e' 0 esso corrisponde ad uno stato, se 1 ad una misurazione numerica
     private int max;
     private int min;
     private String unitaDiMisura;
 
-    public Sensore(CategoriaSensore categoriaSensore, ArrayList<Stanza> stanze, ArrayList<Artefatto> artefatti, boolean tipo, int max, int min)
+    public Sensore(Categoria categoria, boolean valoreNumerico,String unitaDiMisura, int max, int min)
     {
-        this.categoriaSensore = categoriaSensore;
-        this.stanze = stanze;
-        this.artefatti = artefatti;
-        this.tipo = tipo;
+        this.categoria = categoria;
+        this.unitaDiMisura = unitaDiMisura;
+        this.stanze = new ArrayList<Stanza>();
+        this.artefatti = new ArrayList<Artefatto>();
+        this.valoreNumerico = valoreNumerico;
         this.max = max;
         this.min = min;
         this.valore = 0;
     }
 
-    public Sensore(CategoriaSensore categoriaSensore, ArrayList<Stanza> stanze, ArrayList<Artefatto> artefatti, boolean tipo, int max) //Costruttore senza specificare il limite minimo del sensore(utilizzabile per esempio con sensori a stati, assumiamo che lo stato minimo per ques't ultimi sia lo 0)
+    public Sensore(Categoria categoria, boolean valoreNumerico,String unitaDiMisura, int max) //Costruttore senza specificare il limite minimo del sensore(utilizzabile per esempio con sensori a stati, assumiamo che lo stato minimo per ques't ultimi sia lo 0)
     {
-        this.categoriaSensore = categoriaSensore;
-        this.stanze = stanze;
-        this.artefatti = artefatti;
-        this.tipo = tipo;
+        this.categoria = categoria;
+        this.unitaDiMisura = unitaDiMisura;
+        this.stanze = new ArrayList<Stanza>();
+        this.artefatti = new ArrayList<Artefatto>();
+        this.valoreNumerico = valoreNumerico;
         this.max = max;
         this.min = 0;
         this.valore = 0;
     }
 
-    public CategoriaSensore getCategoriaSensore() {
-        return categoriaSensore;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setCategoriaSensore(CategoriaSensore categoriaSensore) {
-        this.categoriaSensore = categoriaSensore;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public ArrayList<Stanza> getStanze() {
@@ -60,7 +62,7 @@ public class Sensore {
     }
 
     public float getValore() {
-        if (this.tipo) //Se e' un numero
+        if (this.valoreNumerico) //Se e' un numero
         {
             if (this.valore == 0) //Se il sensore e' stato appena inizializzato
             {
@@ -110,5 +112,18 @@ public class Sensore {
     public void rimuoviArtefatto(Artefatto artefatto){
         this.artefatti.remove(artefatto);
         artefatto.rimuoviSensore(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Sensore{" +
+                "categoria=" + categoria +
+
+                ", valore=" + valore +
+                ", valoreNumerico=" + valoreNumerico +
+                ", max=" + max +
+                ", min=" + min +
+                ", unitaDiMisura='" + unitaDiMisura + '\'' +
+                '}';
     }
 }

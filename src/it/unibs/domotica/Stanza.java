@@ -8,11 +8,11 @@ public class Stanza {
     private ArrayList<Sensore> sensori;
     private ArrayList<Attuatore> attuatori;
 
-    public Stanza(String nome, ArrayList<Artefatto> artefatti, ArrayList<Sensore> sensori, ArrayList<Attuatore> attuatori) {
+    public Stanza(String nome) {
         this.nome = nome;
-        this.artefatti = artefatti;
-        this.sensori = sensori;
-        this.attuatori = attuatori;
+        this.artefatti = new ArrayList<Artefatto>();
+        this.sensori = new ArrayList<Sensore>();
+        this.attuatori = new ArrayList<Attuatore>();
     }
 
     public void aggiungiArtefatto(Artefatto artefatto){
@@ -37,5 +37,15 @@ public class Stanza {
 
     public void rimuoviAttuatore(Attuatore attuatore){
         this.attuatori.remove(attuatore);
+    }
+
+    @Override
+    public String toString() {
+        return "Stanza{" +
+                "nome='" + nome + '\'' +
+                ", artefatti=" + artefatti +
+                ", sensori=" + sensori +
+                ", attuatori=" + attuatori +
+                '}';
     }
 }
