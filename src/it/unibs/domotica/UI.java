@@ -25,7 +25,8 @@ public class UI {
     {
         //Necessita' di acquisire da disco le categorie pre-salvate
         int selezione = 0;
-        UI grafica = new UI(new Utente(), new Utente(), categorie, new UnitaImmobiliare());
+        //sarebbe meglio passare i dati utente e manutentore come argomento
+        UI grafica = new UI(new Utente("man","manutentore","manutentore","manutentore"), new Utente("fru","fruitore","fruitore","fruitore"), categorie, new UnitaImmobiliare("prova unit","prova","prova"));
         //Se 1 loggato manutentore, se 2 loggato fruitore, se 0 esci dal programma
         System.out.println("Benvenuto nel sistema domotico.\n");
 
@@ -135,23 +136,23 @@ public class UI {
             System.out.print(s.getNome() + "\t");
             for (Sensore sensoreStanza : s.getSensori())
             {
-                System.out.print("\n" +sensoreStanza.getNome() + " " + sensoreStanza.getValore() + " " + sensoreStanza.getUnitaDiMisura());
+                System.out.print("\n" +sensoreStanza.getNome() + " " + sensoreStanza.getUltimaRilevazione().getValore() + " " + sensoreStanza.getUnitaDiMisura());
             }
             for (Artefatto a : s.getArtefatti())
             {
                 for(Sensore sensoreArtefatto : a.getSensori())
                 {
-                    System.out.print("\n" + sensoreArtefatto.getNome() + " " + sensoreArtefatto.getValore() + " " + sensoreArtefatto.getUnitaDiMisura());
+                    System.out.print("\n" + sensoreArtefatto.getNome() + " " + sensoreArtefatto.getUltimaRilevazione().getValore() + " " + sensoreArtefatto.getUnitaDiMisura());
                 }
             }
 
         }
         System.out.print("Artefatti esterni: "); //Lista dei sensori degli artefatti esterni alla casa
-        for(Artefatto arte : this.fruitore.getUnitaImmobiliari().get(0).getEsterno())
+        for(Artefatto arte : this.fruitore.getUnitaImmobiliari().get(0).getArtefatti())
         {
             for(Sensore s : arte.getSensori())
             {
-                System.out.print("\n" + s.getNome() + " " + s.getValore() + " " + s.getUnitaDiMisura());
+                System.out.print("\n" + s.getNome() + " " + s.getUltimaRilevazione().getValore() + " " + s.getUnitaDiMisura());
             }
         }
     }

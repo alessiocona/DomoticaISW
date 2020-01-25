@@ -1,47 +1,59 @@
 package it.unibs.domotica;
 
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Sensore {
-    Categoria categoria;
-    private String nome;
+    private Categoria categoria;
+    private String codice;
+    private Integer stato = 1;//sempre attivi
     ArrayList<Stanza> stanze;
     ArrayList<Artefatto> artefatti;
+    /*
     private float valore;
     private boolean valoreNumerico; //Se il tipo e' 0 esso corrisponde ad uno stato, se 1 ad una misurazione numerica
     private int max;
     private int min;
+
+     */
     private String unitaDiMisura;
 
-    public Sensore(Categoria categoria, boolean valoreNumerico,String unitaDiMisura, int max, int min, String nome)
-    {
-        this.categoria = categoria;
-        this.unitaDiMisura = unitaDiMisura;
-        this.nome = nome;
-        this.stanze = new ArrayList<Stanza>();
-        this.artefatti = new ArrayList<Artefatto>();
-        this.valoreNumerico = valoreNumerico;
-        this.max = max;
-        this.min = min;
-        this.valore = 0;
+    private ArrayList<Rilevazione> rilevazioni;
+
+    public String getCodice() {
+        return codice;
     }
 
-    public Sensore(Categoria categoria, boolean valoreNumerico,String unitaDiMisura, int max, String nome) //Costruttore senza specificare il limite minimo del sensore(utilizzabile per esempio con sensori a stati, assumiamo che lo stato minimo per ques't ultimi sia lo 0)
+    //ci pensiamo dopo:
+    //Costruttore senza specificare il limite minimo del sensore(utilizzabile per esempio con sensori a stati, assumiamo
+    // che lo stato minimo per ques't ultimi sia lo 0)
+
+
+    public Sensore(Stanza stanza, String codice, Categoria categoria, String unitaDiMisura)
     {
+        if (stanza.categoriaSensorePresente(categoria)){
+            throw new IllegalArgumentException("Categoria già presente");
+        }
         this.categoria = categoria;
         this.unitaDiMisura = unitaDiMisura;
-        this.nome = nome;
+        this.codice = codice;
         this.stanze = new ArrayList<Stanza>();
         this.artefatti = new ArrayList<Artefatto>();
-        this.valoreNumerico = valoreNumerico;
-        this.max = max;
-        this.min = 0;
-        this.valore = 0;
+
+        stanza.aggiungiSensore(this);
     }
 
-    public String getNome() {
-        return nome;
+    public Sensore(Artefatto artefatto, String codice, Categoria categoria, String unitaDiMisura)
+    {
+        if (artefatto.categoriaSensorePresente(categoria)){
+            throw new IllegalArgumentException("Categoria già presente");
+        }
+        this.categoria = categoria;
+        this.unitaDiMisura = unitaDiMisura;
+        this.codice = codice;
+        this.stanze = new ArrayList<Stanza>();
+        this.artefatti = new ArrayList<Artefatto>();
+
+        artefatto.aggiungiSensore(this);
     }
 
     public Categoria getCategoria() {
@@ -68,6 +80,7 @@ public class Sensore {
         this.artefatti = artefatti;
     }
 
+    /*
     public float getValore() {
         if (this.valoreNumerico) //Se e' un numero
         {
@@ -92,6 +105,7 @@ public class Sensore {
     public void setValore(float valore) {
         this.valore = valore;
     }
+    */
 
     public String getUnitaDiMisura() {
         return unitaDiMisura;
@@ -121,16 +135,12 @@ public class Sensore {
         artefatto.rimuoviSensore(this);
     }
 
-    @Override
-    public String toString() {
-        return "Sensore{" +
-                "categoria=" + categoria +
+    public Rilevazione getUltimaRilevazione(){
+        return this.rilevazioni.get(rilevazioni.size()-1);
+    }
 
-                ", valore=" + valore +
-                ", valoreNumerico=" + valoreNumerico +
-                ", max=" + max +
-                ", min=" + min +
-                ", unitaDiMisura='" + unitaDiMisura + '\'' +
-                '}';
+    //nome come da formato richiesto
+    public String getNome(){
+        return this.codice + "_" + this.categoria.getNome();
     }
 }

@@ -2,21 +2,40 @@ package it.unibs.domotica;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class Attuatore {
+    private String codice;
+    private Integer stato = 1;//sempre attivi
     private Categoria categoria;
     private Integer modoDefault;
     private HashMap<Integer, String> modalitaFunzionamento;
     private ArrayList<Stanza> stanze;
     private ArrayList<Artefatto> artefatti;
 
-    public Attuatore(Categoria categoria, Integer modoDefault, HashMap<Integer, String> modalitaFunzionamento) {
+    public Attuatore(Stanza stanza, String codice, Categoria categoria, Integer modoDefault, HashMap<Integer, String> modalitaFunzionamento) {
+        if(stanza.categoriaAttuatorePresente(categoria)){
+            throw new IllegalArgumentException("Categoria già presente");
+        }
+        this.codice = codice;
         this.categoria = categoria;
         this.modoDefault = modoDefault;
         this.modalitaFunzionamento = modalitaFunzionamento;
         this.stanze = new ArrayList<Stanza>();
         this.artefatti = new ArrayList<Artefatto>();
+        stanza.aggiungiAttuatore(this);
+    }
+
+    public Attuatore(Artefatto artefatto, String codice, Categoria categoria, Integer modoDefault, HashMap<Integer, String> modalitaFunzionamento) {
+        if(artefatto.categoriaAttuatorePresente(categoria)){
+            throw new IllegalArgumentException("Categoria già presente");
+        }
+        this.codice = codice;
+        this.categoria = categoria;
+        this.modoDefault = modoDefault;
+        this.modalitaFunzionamento = modalitaFunzionamento;
+        this.stanze = new ArrayList<Stanza>();
+        this.artefatti = new ArrayList<Artefatto>();
+        artefatto.aggiungiAttuatore(this);
     }
 
 
@@ -48,5 +67,13 @@ public class Attuatore {
                 ", modalitaFunzionamento=" + modalitaFunzionamento +
 
                 '}';
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+    //nome come da formato richiesto
+    public String getNome(){
+        return this.codice + "_" + this.categoria.getNome();
     }
 }

@@ -10,12 +10,33 @@ public class Test {
 
 
         UnitaImmobiliare u = new UnitaImmobiliare("p1","appartamento","unità di prova");
-        Artefatto cancello = new Artefatto("cancello");
-        Stanza cucina = new Stanza("cucina");
-        u.aggiungiStanza(cucina);
-        u.aggiungiArtefatto(cancello);
+        Artefatto cancello = new Artefatto("cancello",u);
+        //Artefatto cancello2 = new Artefatto("cancello",u);
+        Stanza cucina = new Stanza("cucina",u);
+        try {
+            Stanza cucina2 = new Stanza("cucina", u);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
-        Sensore s = new Sensore(cs,true,"Gradi",100);
+        try {
+            Sensore sensoreCucina = new Sensore(cucina,"sensore temperatura",cs,"Gradi");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        try {
+            Sensore sensoreCucina2 = new Sensore(cucina,"sensore temperatura",cs,"Gradi");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        System.out.printf(u.toString());
+
+
+
+       /* u.aggiungiArtefatto(cancello);
+
+
         s.aggiungiStanza(cucina);
 
         HashMap<Integer,String> modiAt1 = new HashMap<Integer, String>();
@@ -27,7 +48,7 @@ public class Test {
 
 
         System.out.printf(u.toString());
-
+        */
 
     }
 }

@@ -7,10 +7,28 @@ public class Artefatto {
     private ArrayList<Sensore> sensori;
     private ArrayList<Attuatore> attuatori;
 
-    public Artefatto(String nome) {
+    public Artefatto(String nome, UnitaImmobiliare unitaImmobiliare) {
+        if (unitaImmobiliare.nomeArtefattoPresente(nome)){
+            throw new IllegalArgumentException("Artefatto già presente");
+        }
         this.nome = nome;
         this.sensori = new ArrayList<Sensore>();
         this.attuatori = new ArrayList<Attuatore>();
+        unitaImmobiliare.aggiungiArtefatto(this);
+    }
+
+    public Artefatto(String nome, Stanza stanza) {
+        if (stanza.nomeArtefattoPresente(nome)){
+            throw new IllegalArgumentException("Artefatto già presente");
+        }
+        this.nome = nome;
+        this.sensori = new ArrayList<Sensore>();
+        this.attuatori = new ArrayList<Attuatore>();
+        stanza.aggiungiArtefatto(this);
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public ArrayList<Sensore> getSensori() {
@@ -31,6 +49,22 @@ public class Artefatto {
 
     public void rimuoviSensore(Sensore sensore) {
         this.sensori.remove(sensore);
+    }
+
+    //Verifico se categoria sensore già utilizzato
+    public Boolean categoriaSensorePresente(Categoria categoria){
+        for (Sensore s:this.sensori) {
+            if (s.getCategoria().equals(categoria)) return true;
+        }
+        return false;
+    }
+
+    //Verifico se categoria attuatori già utilizzato
+    public Boolean categoriaAttuatorePresente(Categoria categoria){
+        for (Attuatore a:this.attuatori) {
+            if (a.getCategoria().equals(categoria)) return true;
+        }
+        return false;
     }
 
     @Override
