@@ -1,10 +1,35 @@
 package it.unibs.domotica;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 public class Test {
+
+
     public static void main(String[] args) {
+        Utente manutentore = new Utente("m","m","m","m");
+        Utente fruitore = new Utente("f","f","f","f");
+        Domotica domotica = new Domotica(manutentore,fruitore);
+        domotica.creaUnitaImmobiliare("1","appartamento1","unità abitativa");
+        domotica.creaUnitaImmobiliare("2","casa campagna","unità abitativa");
+        System.out.println(domotica);
+
+        Gson gson = new GsonBuilder().create();
+        JsonElement jsonElement = gson.toJsonTree(domotica);
+        System.out.println("ZERO JSON : " + jsonElement);           // Root element
+/*
+        JsonObject jsonObject = jsonElement.getAsJsonObject();
+        jsonObject.addProperty("power", "300BHP");                      // add a new property
+
+        jsonObject.remove("cost");                                      // remove an existing property
+
+        jsonObject.getAsJsonArray("colors").set(0, new JsonPrimitive("RED"));// update an existing property
+
+        System.out.println("Updated JSON : " + jsonObject);
+
+        /*
         Categoria cs = new Categoria("t","sensore temperatura");
         Categoria ca = new Categoria("ce","cancello elettrico");
 
