@@ -8,15 +8,11 @@ public class Stanza {
     private ArrayList<Sensore> sensori;
     private ArrayList<Attuatore> attuatori;
 
-    public Stanza(String nome, UnitaImmobiliare unitaImmobiliare) {
-        if (unitaImmobiliare.nomeStanzaPresente(nome)){
-            throw new IllegalArgumentException("Stanza già presente");
-        }
+    public Stanza(String nome) {
         this.nome = nome;
         this.artefatti = new ArrayList<Artefatto>();
         this.sensori = new ArrayList<Sensore>();
         this.attuatori = new ArrayList<Attuatore>();
-        unitaImmobiliare.aggiungiStanza(this);
     }
 
     public void aggiungiArtefatto(Artefatto artefatto){
@@ -61,6 +57,9 @@ public class Stanza {
     }
 
     public void aggiungiSensore(Sensore sensore){
+        if (categoriaSensorePresente(sensore.getCategoria())){
+            throw new IllegalArgumentException("Categoria già presente");
+        }
         this.sensori.add(sensore);
     }
 

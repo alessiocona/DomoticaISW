@@ -18,10 +18,18 @@ public class UnitaImmobiliare {
     }
 
     public void aggiungiStanza(Stanza stanza){
+        if (this.nomeStanzaPresente(stanza.getNome())){
+            throw new IllegalArgumentException("Stanza già presente");
+        }
         this.stanze.add(stanza);
     }
 
-    public void aggiungiArtefatto(Artefatto artefatto) { this.artefatti.add(artefatto); }
+    public void aggiungiArtefatto(Artefatto artefatto) {
+        if (this.nomeArtefattoPresente(artefatto.getNome())){
+            throw new IllegalArgumentException("Artefatto già presente");
+        }
+        this.artefatti.add(artefatto);
+    }
 
 
     public String getNome() {
@@ -44,12 +52,21 @@ public class UnitaImmobiliare {
         return stanze;
     }
 
+    public Stanza getStanza(String nome) {
+        for (Stanza s:this.stanze) {
+            if (s.getNome().equals(nome)) return s;
+        }
+        throw new IllegalArgumentException("Stanza non presente");
+    }
+
     //Verifico se nome stanza già utilizzato
     public Boolean nomeStanzaPresente(String nome){
-        for (Stanza s:this.stanze) {
-            if (s.getNome().equals(nome)) return true;
+        try{
+            Stanza s = getStanza(nome);
+            return true;
+        }catch (IllegalArgumentException e){
+            return false;
         }
-        return false;
     }
 
     //Verifico se nome artefatto già utilizzato

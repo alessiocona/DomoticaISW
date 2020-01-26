@@ -7,14 +7,10 @@ public class Artefatto {
     private ArrayList<Sensore> sensori;
     private ArrayList<Attuatore> attuatori;
 
-    public Artefatto(String nome, UnitaImmobiliare unitaImmobiliare) {
-        if (unitaImmobiliare.nomeArtefattoPresente(nome)){
-            throw new IllegalArgumentException("Artefatto già presente");
-        }
+    public Artefatto(String nome) {
         this.nome = nome;
         this.sensori = new ArrayList<Sensore>();
         this.attuatori = new ArrayList<Attuatore>();
-        unitaImmobiliare.aggiungiArtefatto(this);
     }
 
     public Artefatto(String nome, Stanza stanza) {

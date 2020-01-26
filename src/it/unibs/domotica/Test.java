@@ -5,6 +5,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import java.util.ArrayList;
+import java.util.logging.Logger;
+
 public class Test {
 
 
@@ -13,23 +16,28 @@ public class Test {
         Utente fruitore = new Utente("f","f","f","f");
         Domotica domotica = new Domotica(manutentore,fruitore);
         domotica.creaUnitaImmobiliare("1","appartamento1","unità abitativa");
-        domotica.creaUnitaImmobiliare("2","casa campagna","unità abitativa");
-        System.out.println(domotica);
+        domotica.creaCategoria("temperatura","sensore temperatura");
+        domotica.creaCategoria("fumo","sensore fumo");
+        domotica.creaStanza("cucina");
+        domotica.creaStanza("soggiorno");
+        domotica.creaArtefatto("cancello");
+        domotica.creaArtefatto("antenna");
+        String nome = "cancello";
+        try{
+            domotica.creaArtefatto(nome);
+        }catch (Exception e){
+            System.out.println("artefatto " + nome + " già presente");
+        }
+        domotica.creaSensose("f1","%",domotica.getStanza("cucina"),domotica.getCategoria("fumo"));
+        ArrayList<Stanza> dovetemperatura = new ArrayList<Stanza>();
+        dovetemperatura.add(domotica.getStanza("cucina"));
+        dovetemperatura.add(domotica.getStanza("soggiorno"));
+        domotica.creaSensose("t1","C°",dovetemperatura,domotica.getCategoria("temperatura"));
+        System.out.println("fine");
 
-        Gson gson = new GsonBuilder().create();
-        JsonElement jsonElement = gson.toJsonTree(domotica);
-        System.out.println("ZERO JSON : " + jsonElement);           // Root element
-/*
-        JsonObject jsonObject = jsonElement.getAsJsonObject();
-        jsonObject.addProperty("power", "300BHP");                      // add a new property
-
-        jsonObject.remove("cost");                                      // remove an existing property
-
-        jsonObject.getAsJsonArray("colors").set(0, new JsonPrimitive("RED"));// update an existing property
-
-        System.out.println("Updated JSON : " + jsonObject);
 
         /*
+
         Categoria cs = new Categoria("t","sensore temperatura");
         Categoria ca = new Categoria("ce","cancello elettrico");
 

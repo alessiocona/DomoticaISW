@@ -28,18 +28,13 @@ public class Sensore {
     // che lo stato minimo per ques't ultimi sia lo 0)
 
 
-    public Sensore(Stanza stanza, String codice, Categoria categoria, String unitaDiMisura)
+    public Sensore(String codice, String unitaDiMisura, Stanza stanza,  Categoria categoria)
     {
-        if (stanza.categoriaSensorePresente(categoria)){
-            throw new IllegalArgumentException("Categoria già presente");
-        }
         this.categoria = categoria;
         this.unitaDiMisura = unitaDiMisura;
         this.codice = codice;
         this.stanze = new ArrayList<Stanza>();
         this.artefatti = new ArrayList<Artefatto>();
-
-        stanza.aggiungiSensore(this);
     }
 
     public Sensore(Artefatto artefatto, String codice, Categoria categoria, String unitaDiMisura)
